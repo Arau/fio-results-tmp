@@ -114,15 +114,15 @@ while true; do
 
         for p in $pods; do
             echo "Trigger FIO profile $profile in $p"
-            $k -n $ns exec $p -- /bin/sh -c "fio /tmp/fio/$profile > /usr/share/nginx/html/out-$counter"
+            $k -n $ns exec $p -- /bin/sh -c "fio --output-format=json /tmp/fio/$profile > /usr/share/nginx/html/out-$counter"
             $k -n $ns exec $p -- /bin/sh -c "date >> $index && echo \"<br>\" $profile \"<br>\" >> $index"
-            $k -n $ns exec $p -- /bin/sh -c "grep \"read\\|write\" /usr/share/nginx/html/out-$counter >> $index "
+            $k -n $ns exec $p -- /bin/sh -c "grep \"iops\\|bw\" /usr/share/nginx/html/out-$counter >> $index "
             $k -n $ns exec $p -- /bin/sh -c "echo \"<br>\" >> $index"
             sleep 30
             (( ++counter ))
         done
     done
 
-    sleep 600
+    sleep 60
     (( ++iterations ))
 done
