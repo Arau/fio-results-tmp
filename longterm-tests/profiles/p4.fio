@@ -1,0 +1,17 @@
+[global]
+size=300MB
+ioengine=libaio
+direct=1
+random_generator=tausworthe
+random_distribution=random
+rw=randrw
+rwmixread=80
+rwmixwrite=20
+percentage_random=85
+bs=128k
+iodepth=1
+log_avg_msec=250
+group_reporting=1
+
+[vol0]
+filename=/usr/share/nginx/html/p4
