@@ -1,12 +1,12 @@
 [global]
-size=100MB
+size=4GB
 ioengine=libaio
 direct=1
 random_generator=tausworthe
 random_distribution=random
 rw=randrw
-rwmixread=60
-rwmixwrite=40
+rwmixread=0
+rwmixwrite=100
 percentage_random=85
 bs=4k
 iodepth=16
